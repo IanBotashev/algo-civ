@@ -1,0 +1,30 @@
+INFO:2020-07-08 02:28:04,140 Started Logging, Level : 20
+INFO:2020-07-08 02:28:04,140 Generating picklist...
+INFO:2020-07-08 02:28:04,141 Generated Picklist
+
+INFO:2020-07-08 02:28:04,141 Generating visible units...
+INFO:2020-07-08 02:28:04,141 Generated Visible Units.
+
+INFO:2020-07-08 02:28:04,141 Generating units...
+INFO:2020-07-08 02:28:04,141 Picking Values...
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Generated Value successfully.
+
+INFO:2020-07-08 02:28:04,141 Finished Picking Values...
+INFO:2020-07-08 02:28:04,141 Generated all units
+
