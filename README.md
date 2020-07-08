@@ -1,2 +1,5 @@
 # algo-civ
-A simple game, where you have to create an algorithm.
+
+I have to note, this game is  very much inspired by the game named 
+[>_terminal](https://terminal.c1games.com/)
+
