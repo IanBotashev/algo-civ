@@ -1,4 +1,4 @@
-from AlgoCiv.engine.gravity.grid.value import *
+from algociv.engine.gravity.grid.value import *
 import datetime
 
 
@@ -25,3 +25,14 @@ class Unit:
     def __repr__(self):
         return f"Unit({self.value}, {self.coordinates}"
 
+def find_distance(point1: Coordinates, point2: Coordinates):
+    """
+    Finds the distance between two points.
+    :param point1:
+    :param point2:
+    :return:
+    """
+    x_distance = point1.xpos - point2.xpos
+    y_distance = point1.ypos - point2.ypos
+
+    return (x_distance, y_distance)
