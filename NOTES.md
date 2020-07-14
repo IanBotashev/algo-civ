@@ -1,4 +1,6 @@
 # Notes
+
+## THIS IS NOW DEPRECATED AND IS NO LONGER BEING UPDATED
 This is basically a streamline of my brainstorming. So i will ask, and then answer my own questions.
 Yes i'm keeping all of that in.
 
