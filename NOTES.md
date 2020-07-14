@@ -2,7 +2,20 @@
 This is basically a streamline of my brainstorming. So i will ask, and then answer my own questions.
 Yes i'm keeping all of that in.
 
-The hardest fucking part of all of this, is actually having a challenge. Cause right now, this sucks ass.
+## Modules
+Modules are the things which allow you to do stuff. Such as craft and smelt resources.
+
+Modules: 
+    - Powerplant
+    - Smelter
+    - Constructor
+
+Multiple of the same module give you different bonuses, such as the output, or the time taken to do something.
+
+## Materials & Items
+Materials are materials. Basically, these are like raw resources such as Coal, Wood Stone.
+But, they can also include processed ores.
+Items are what you get when you combine materials.
 
 ## Hierarchy Structure
 This section describes the general hierarchy of the game. Basically how all the process work together.
@@ -46,7 +59,12 @@ Should there be a "memory" variable? This could limit the structure
 from being overpowered, like creating it's own energy while also
 building more things. But how should this work?
 
-No. Energy capacity already does that, i just need to fully figure out how Mining, Building, and getting energy works.
+~~No. Energy capacity already does that, i just need to fully figure out how Mining, Building, and getting energy works.~~
+Nope! Modules do that already!
+
+Structures have health aswell.
+This can be increased once it reaches 0, poof. Gone.
+
 
 How should we determine the cost to build one structure though? It would make sense to make it cost materials,
 yet how do we determine the cost of it?
@@ -89,7 +107,21 @@ then loops through every structure and calls runtime(). This is also how variabl
 
 
 ## Workers
-UNSURE IF WORKERS WILL BE ADDED!
+This section talks about workers.
+
+### Theory
+~~UNSURE IF WORKERS WILL BE ADDED!~~
+Alright, i'm adding them. Mobile structures are really needed.
 
 Workers are like moving structures. Except they are more limited. 
-They have less energy, and 
+They have less energy, and can't perform as many tasks as a structure.
+
+They do also have modules
+Some modules:
+    - idk
+   
+### Technical
+Workers are classes, like everything else is.
+It has modules, kept track of by the ModuleManager.
+
+The game itself, on each cycle, runs runtime().

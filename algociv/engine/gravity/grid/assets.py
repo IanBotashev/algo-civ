@@ -1,5 +1,6 @@
 from algociv.engine.gravity.grid.value import *
 import datetime
+from math import sqrt
 
 
 class Coordinates:
@@ -32,7 +33,18 @@ def find_distance(point1: Coordinates, point2: Coordinates):
     :param point2:
     :return:
     """
-    x_distance = point1.xpos - point2.xpos
-    y_distance = point1.ypos - point2.ypos
+    x_distance = pow(point1.xpos - point2.xpos, 2)
+    y_distance = pow(point1.ypos - point2.ypos, 2)
 
-    return (x_distance, y_distance)
+    distance = sqrt(x_distance + y_distance)
+
+    return distance
+
+
+class Dimensions:
+    def __init__(self, y_dimension, x_dimension):
+        self.y = y_dimension
+        self.x = x_dimension
+
+    def __repr__(self):
+        return f"<Dimensions(x: {self.x}, y: {self.y})>"
