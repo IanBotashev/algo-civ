@@ -1,5 +1,4 @@
 from algociv.engine.gravity.grid.value import *
-import datetime
 from math import sqrt
 
 
@@ -26,6 +25,7 @@ class Unit:
     def __repr__(self):
         return f"Unit({self.value}, {self.coordinates}"
 
+
 def find_distance(point1: Coordinates, point2: Coordinates):
     """
     Finds the distance between two points.
@@ -35,8 +35,7 @@ def find_distance(point1: Coordinates, point2: Coordinates):
     """
     x_distance = pow(point1.xpos - point2.xpos, 2)
     y_distance = pow(point1.ypos - point2.ypos, 2)
-
-    distance = sqrt(x_distance + y_distance)
+    distance = round(sqrt(x_distance + y_distance))
 
     return distance
 
