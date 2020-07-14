@@ -29,5 +29,5 @@ class Grid:
         Generates all units around the center point.
         :return:
         """
-        self.visible_units = generate_visible_units(point, dimensions)
-        self.loaded_units = generate_units(self.seed, self.visible_units, self.saved_units, dimensions)
+        visible_units = generate_visible_units(point, dimensions)
+        return generate_units(self.seed, visible_units, self.saved_units, dimensions)

@@ -4,12 +4,13 @@ from algociv.engine.game.modules.manager import ModuleManager
 
 
 class Structure:
-    def __init__(self, energy_cap, location: Coordinates, inventory_cap, module_cap, health):
+    def __init__(self, energy_cap, location: Coordinates, inventory_cap, module_cap, health, dimensions):
         self.__energy_cap__ = energy_cap
         self.__inventory__ = Inventory(inventory_cap)
         self.__location__ = location
         self.__modules__ = ModuleManager(module_cap)
         self.__health__ = health
+        self.__dimensions__ = dimensions
 
     def runtime(self):
         print("Should probably put something here. Currently, your structure is doing nothing.")
