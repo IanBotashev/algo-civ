@@ -7,10 +7,7 @@ class ResearchItem:
     """
 
     # Name given to the algorithm. Only for aesthetic purposes.
-    __external_name__ = None
-
-    # Name only used internally. Must be formatted, so there's no special characters, and it must be fully uppercase
-    __internal_name__ = None
+    __name__ = None
 
     # Description. Information given to the user
     __description__ = None
@@ -18,16 +15,28 @@ class ResearchItem:
     # This shows the game what research is required so this can be researched
     __required__ = None
 
+    # The Energy cost
+    __cost__ = None
+
     # Traits to be edited.
     __traits__ = None
 
 
 class SampleResearch(ResearchItem):
-    __external_name__ = "Sample Research Item"
-    __internal_name__ = "SAMPLERESEARCHITEM"
+    __name__ = "Sample Research Item"
     __description__ = 'A Sample research item. Not meant to be in-game.'
-    __required__ = None
+    __required__ = []
 
     __traits__ = {
         '__worker_dim__': Dimensions(5, 5),
+        }
+
+
+class SampleResearch1(ResearchItem):
+    __name__ = "Sample Research Item 2"
+    __description__ = 'A Sample research item 2. Not meant to be in-game.'
+    __required__ = [SampleResearch]
+
+    __traits__ = {
+        '__worker_dim__': Dimensions(7, 7),
         }
