@@ -1,13 +1,13 @@
-from algociv.engine.game.modules import Module
+class Module:
+    name = None
+    description = None
 
 
 class PowerPlant(Module):
-    pass
+    name = 'Power Plant'
+    description = 'Allows for production of energy.'
 
 
 class Smelter(Module):
-    pass
-
-
-class Constructor(Module):
-    pass
+    name = 'Smelter'
+    description = 'Allows for smelting ores'

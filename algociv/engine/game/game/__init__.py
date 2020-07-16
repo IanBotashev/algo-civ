@@ -6,6 +6,7 @@ from algociv.engine.game.research.manager import ResearchManager
 from algociv.engine.game.research.research import *
 from algociv.engine.game.objects.default import TraitManager
 from algociv.engine.game.research.research import SampleResearch
+from algociv.engine.gravity.grid import Grid
 import random
 
 
@@ -28,6 +29,8 @@ class Game:
         self.__traits__ = TraitManager()
         self.__objects__ = ObjectManager(self.__grid__, self.__traits__)
 
+        self.actions = Actions(self.__grid__, self.__traits__, self.__objects__)
+
         self.__research__ = ResearchManager(self.__traits__)
         self.add_allowed_research()
 
@@ -38,7 +41,7 @@ class Game:
         """
         research = [
             SampleResearch,
-            SampleResearch1,
+            SampleResearch1
         ]
         self.__research__.__available_research__ = research
 
