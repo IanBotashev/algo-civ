@@ -27,9 +27,8 @@ class Game:
         self.__grid__ = Grid(self.__seed__)
 
         self.__traits__ = TraitManager()
-        self.__objects__ = ObjectManager(self.__grid__, self.__traits__)
-
-        self.actions = Actions(self.__grid__, self.__traits__, self.__objects__)
+        self.__objects__ = ObjectManager()
+        self.actions = Actions(self)
 
         self.__research__ = ResearchManager(self.__traits__)
         self.add_allowed_research()

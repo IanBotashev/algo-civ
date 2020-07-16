@@ -1,4 +1,4 @@
-from algociv.engine.game.modules import Module
+from algociv.engine.game.modules.modules import Module
 from algociv.engine.game.modules.errors import ModuleCapReached
 
 
