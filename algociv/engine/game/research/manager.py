@@ -1,11 +1,11 @@
-from algociv.engine.game.objects.default import TraitManager
+from algociv.engine.game.structures.default import TraitManager
 from algociv.engine.game.research.research import ResearchItem
 from algociv.engine.game.research.errors import *
 
 
 class ResearchManager:
     """
-    This object keeps track of all researched objects.
+    This object keeps track of all researched building.
     """
     def __init__(self, trait_manager: TraitManager):
         self.__researched__ = []

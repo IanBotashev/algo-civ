@@ -28,7 +28,7 @@ def generation_algorithm(seed, unit):
 def generate_visible_units(center_point, dimensions):
     """
     Generates a list of all visible units.
-    It does not return a list of Unit objects, but coordinate objects.
+    It does not return a list of Unit building, but coordinate building.
     :param center_point:
     :param width:
     :param height:

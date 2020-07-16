@@ -11,11 +11,11 @@ class TraitManager:
         self.__worker_inventory_cap__ = 5
 
         # Structure Default Stats
-        self.__structure_dim__ = Dimensions(3, 3)
-        self.__structure_health__ = 75
-        self.__structure_module_cap__ = 2
-        self.__structure_energy_cap__ = 100
-        self.__structure_inventory_cap__ = 10
+        self.__building_dim__ = Dimensions(3, 3)
+        self.__building_health__ = 75
+        self.__building_module_cap__ = 2
+        self.__building_energy_cap__ = 100
+        self.__building_inventory_cap__ = 10
 
         # Civilization Default Stats
         self.__civ_dim__ = Dimensions(5, 5)
