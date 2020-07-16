@@ -1,12 +1,8 @@
 class Material:
-    name = None
-    description = None
+    __name__ = None
+    __description__ = None
 
-
-class Coal(Material):
-    name = 'Coal'
-    description = 'Coal, mainly used for producing energy.'
 
 class Stone(Material):
-    name = 'Stone'
-    description = 'Stone'
+    __name__ = 'Stone'
+    __description__ = 'Stone'
