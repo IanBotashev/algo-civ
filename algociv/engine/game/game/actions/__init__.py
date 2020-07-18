@@ -3,7 +3,7 @@ from algociv.engine.game.structures.worker import Worker
 from algociv.engine.gravity.grid.assets import Coordinates, Unit
 from algociv.engine.game.items.items import *
 from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable
-import inspect
+from .internal import is_mineable, is_craftable, check_required_materials
 
 
 class Actions:
@@ -18,22 +18,10 @@ class Actions:
         Mines a unit, and puts the resources into the building inventory.
         :return:
         """
-        if not self.is_mineable(unit.value.kwargs['material']):
+        if not is_mineable(unit.value.kwargs['material'], self.__game__.__traits__.__mineables__):
             raise NotMineable(f"The material {unit.value.kwargs['material']} is not mineable.")
 
         structure.__inventory__.append(unit.value.kwargs['material'])
-
-    def is_mineable(self, material):
-        """
-        Checks if a material is mineable
-        :param material:
-        :return:
-        """
-        if material in self.__game__.__traits__.__mineables__:
-            return True
-
-        # Else
-        return False
 
     def craft(self, structure, item: Item):
         """
@@ -42,34 +30,17 @@ class Actions:
         :param item:
         :return:
         """
-        temp = 0
 
-        if not self.is_craftable(item):
+        if not is_craftable(item, self.__game__.__traits__.__craftables__):
             raise NotCraftable("This item is not craftable.")
 
-        for material in structure.__inventory__.inventory:
-            for required_mat in item.craft:
-                if material == required_mat:
-                    temp += 1
-
-        if temp < len(item.craft):
-            raise DoesNotHaveRequiredItems('You do not have the required items to craft that item.')
+        if not check_required_materials(item.craft, structure.__inventory__.inventory):
+            raise DoesNotHaveRequiredItems(f'You do not have enough materials to craft {item.name}')
 
         else:
             for required_item in item.craft:
                 structure.__inventory__.inventory.remove(required_item)
             structure.__inventory__.inventory.append(item)
-
-    def is_craftable(self, item: Item):
-        """
-        Checks if an item is craftable
-        :param item:
-        :return:
-        """
-        if item in self.__game__.__traits__.__craftables__:
-            return True
-        # Else
-        return False
 
     def initialize_building(self, building: Building, coordinates: Coordinates):
         """
@@ -81,6 +52,7 @@ class Actions:
 
         # Apologies for this amount of errors, you may ignore this.
         # I had to do building() and not building.__init__(), because __init__ does not return the proper object instance.
+        # Or maybe it does, and i'm just an awful programmer. Who knows.
         result = building(self.__game__.__traits__.__building_energy_cap__,
                             coordinates,
                             self.__game__.__traits__.__building_inventory_cap__,
