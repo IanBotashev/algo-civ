@@ -29,7 +29,7 @@ class Actions:
         """
         temp = 0
 
-        if not self.check_if_craftable(item):
+        if not self.is_craftable(item):
             raise NotCraftable("This item is not craftable.")
 
         for material in structure.__inventory__.inventory:
@@ -45,7 +45,7 @@ class Actions:
                 structure.__inventory__.inventory.remove(required_item)
             structure.__inventory__.inventory.append(item)
 
-    def check_if_craftable(self, item: Item):
+    def is_craftable(self, item: Item):
         """
         Checks if an item is craftable
         :param item:
