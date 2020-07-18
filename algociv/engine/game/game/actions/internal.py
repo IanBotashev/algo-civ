@@ -5,12 +5,7 @@ def is_mineable(material, mineables):
     :param mineables:
     :return:
     """
-    if material in mineables:
-        return True
-
-    # Else
-    return False
-
+    return material in mineables
 
 def check_required_materials(required_mats, owned_mats):
     """
@@ -30,7 +25,4 @@ def is_craftable(item, craftables):
     :param craftables:
     :return:
     """
-    if item in craftables:
-        return True
-    # Else
-    return False
+    return item in craftables
