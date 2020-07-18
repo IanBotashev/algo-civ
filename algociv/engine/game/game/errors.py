@@ -4,3 +4,7 @@ class DoesNotHaveRequiredItems(Exception):
 
 class NotCraftable(Exception):
     pass
+
+
+class NotMineable(Exception):
+    pass

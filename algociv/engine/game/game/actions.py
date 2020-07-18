@@ -2,7 +2,7 @@ from algociv.engine.game.structures.building import Building
 from algociv.engine.game.structures.worker import Worker
 from algociv.engine.gravity.grid.assets import Coordinates, Unit
 from algociv.engine.game.items.items import *
-from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable
+from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable
 import inspect
 
 
@@ -18,7 +18,23 @@ class Actions:
         Mines a unit, and puts the resources into the building inventory.
         :return:
         """
+        if not self.is_mineable(unit.value.kwargs['material']):
+            raise NotMineable(f"The material {unit.value.kwargs['material']} is not mineable.")
+
         structure.__inventory__.append(unit.value.kwargs['material'])
+
+    def is_mineable(self, material):
+        """
+        Checks if a material is mineable
+        :param material:
+        :return:
+        """
+        for mineable in self.__game__.__traits__.__mineables__:
+            if mineable == material:
+                return True
+
+        # Else
+        return False
 
     def craft(self, structure, item: Item):
         """

@@ -1,11 +1,15 @@
 from algociv.engine.gravity.grid.assets import Dimensions
 from algociv.engine.game.items.items import *
+from algociv.engine.game.items.materials import *
 
 
 class TraitManager:
     def __init__(self):
         self.__craftables__ = [
             SampleItem,
+        ]
+        self.__mineables__ = [
+            Dirt,
         ]
 
         # Worker Default Stats
