@@ -1,8 +1,13 @@
 from algociv.engine.gravity.grid.assets import Dimensions
+from algociv.engine.game.items.items import *
 
 
 class TraitManager:
     def __init__(self):
+        self.__craftables__ = [
+            SampleItem,
+        ]
+
         # Worker Default Stats
         self.__worker_dim__ = Dimensions(3, 3)
         self.__worker_health__ = 50

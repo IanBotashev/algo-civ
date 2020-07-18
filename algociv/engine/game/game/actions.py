@@ -1,6 +1,8 @@
 from algociv.engine.game.structures.building import Building
 from algociv.engine.game.structures.worker import Worker
 from algociv.engine.gravity.grid.assets import Coordinates, Unit
+from algociv.engine.game.items.items import *
+from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable
 import inspect
 
 
@@ -11,12 +13,50 @@ class Actions:
     def __init__(self, gameinstance):
         self.__game__ = gameinstance
 
-    def mine(self, building, unit: Unit):
+    def mine(self, structure, unit: Unit):
         """
         Mines a unit, and puts the resources into the building inventory.
         :return:
         """
-        building.__inventory__.append(unit.value.kwargs['material'])
+        structure.__inventory__.append(unit.value.kwargs['material'])
+
+    def craft(self, structure, item: Item):
+        """
+        Crafts an item
+        :param structure:
+        :param item:
+        :return:
+        """
+        temp = 0
+
+        if not self.check_if_craftable(item):
+            raise NotCraftable("This item is not craftable.")
+
+        for material in structure.__inventory__.inventory:
+            for required_mat in item.craft:
+                if material == required_mat:
+                    temp += 1
+
+        if temp < len(item.craft):
+            raise DoesNotHaveRequiredItems('You do not have the required items to craft that item.')
+
+        else:
+            for required_item in item.craft:
+                structure.__inventory__.inventory.remove(required_item)
+            structure.__inventory__.inventory.append(item)
+
+    def check_if_craftable(self, item: Item):
+        """
+        Checks if an item is craftable
+        :param item:
+        :return:
+        """
+        for craftable in self.__game__.__traits__.__craftables__:
+            if craftable == item:
+                return True
+
+        # Else
+        return False
 
     def initialize_building(self, building: Building, coordinates: Coordinates):
         """
