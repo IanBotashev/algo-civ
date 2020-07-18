@@ -10,4 +10,4 @@ class Item:
 class SampleItem:
     name = "Sample Item"
     description = "A test item. Not supposed to be in-game"
-    craft = [Stone]
+    craft = [Dirt]

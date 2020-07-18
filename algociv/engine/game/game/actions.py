@@ -29,9 +29,8 @@ class Actions:
         :param material:
         :return:
         """
-        for mineable in self.__game__.__traits__.__mineables__:
-            if mineable == material:
-                return True
+        if material in self.__game__.__traits__.__mineables__:
+            return True
 
         # Else
         return False
@@ -67,10 +66,8 @@ class Actions:
         :param item:
         :return:
         """
-        for craftable in self.__game__.__traits__.__craftables__:
-            if craftable == item:
-                return True
-
+        if item in self.__game__.__traits__.__craftables__:
+            return True
         # Else
         return False
 
