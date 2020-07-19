@@ -14,8 +14,7 @@ def check_required_materials(required_mats, owned_mats):
     :param owned_mats:
     :return:
     """
-    check = all(item in owned_mats for item in required_mats)
-    return check
+    return all(item in owned_mats for item in required_mats)
 
 
 def is_craftable(item, craftables):

@@ -8,3 +8,11 @@ class NotCraftable(Exception):
 
 class NotMineable(Exception):
     pass
+
+
+class CannotMine(Exception):
+    pass
+
+
+class CannotCraft(Exception):
+    pass

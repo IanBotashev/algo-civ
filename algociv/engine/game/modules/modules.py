@@ -1,13 +1,24 @@
 class Module:
+    # The name of the module
     __name__ = None
+
+    # The description of the module
     __description__ = None
 
+    # The building cost. Basically, defines what materials this will cost
+    __building_cost__ = None
 
-class PowerPlant(Module):
-    __name__ = 'Power Plant'
-    __description__ = 'Allows for production of energy.'
+    # The Energy Cost.
+    __cost__ = None
+
+    # The traits the module would edit
+    __traits__ = None
 
 
-class Smelter(Module):
-    __name__ = 'Smelter'
-    __description__ = 'Allows for smelting ores'
+class SampleModule:
+    __name__ = "Sample Module"
+    __description__ = "A Sample module. Not meant to be in-game"
+
+    __traits__ = {
+        "__can_mine__": True
+    }
