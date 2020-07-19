@@ -84,7 +84,10 @@ class Actions:
             self.__game__.__traits__.__worker_health__,
             self.__game__.__grid__,
             self.__game__.__traits__.__worker_dim__,
-            coordinates)
+            coordinates,
+            self,
+            self.__game__.__traits__.__worker_energy_cap__,
+            self.__game__.__traits__.__worker_inventory_cap__)
 
         self.__game__.__structures__.__workers__.append(result)
         return result
