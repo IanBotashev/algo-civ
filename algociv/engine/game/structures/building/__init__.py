@@ -4,6 +4,7 @@ from algociv.engine.game.modules.manager import ModuleManager
 
 
 class Building:
+    __structure_type__ = 'BUILDING'
     def __init__(self, energy_cap, location: Coordinates, inventory_cap, module_cap, health, dimensions, grid, actions):
         # This is getting extremely cluttered. I'm sure there's a better way of doing this. If you have a better way,
         # please post an issue about this.

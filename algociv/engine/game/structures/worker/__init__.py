@@ -5,6 +5,7 @@ from algociv.engine.game.inventory import Inventory
 
 
 class Worker:
+    __structure_type__ = 'WORKER'
     def __init__(self, module_cap, health, grid: Grid, dimensions: Dimensions, coordinates: Coordinates, actions, energy_cap, inventory_cap):
         self.__modules__ = ModuleManager(module_cap, self)
         self.__health__ = health

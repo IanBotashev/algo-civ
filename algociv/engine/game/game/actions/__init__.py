@@ -2,8 +2,10 @@ from algociv.engine.game.structures.building import Building
 from algociv.engine.game.structures.worker import Worker
 from algociv.engine.gravity.grid.assets import Coordinates, Unit
 from algociv.engine.game.items.items import *
+from algociv.engine.game.research.research import *
 from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft, CannotMine
 from .internal import is_mineable, is_craftable, check_required_materials
+from .errors import InvalidStructureType
 
 
 class Actions:
@@ -46,6 +48,29 @@ class Actions:
             for required_item in item.craft:
                 structure.__inventory__.inventory.remove(required_item)
             structure.__inventory__.inventory.append(item)
+
+    def move(self, structure, coordinates: Coordinates):
+        """
+        Moves a worker to new coordinates
+        :param worker:
+        :param coordinates:
+        :return:
+        """
+        if structure.__structure_type__ != "WORKER":
+            raise InvalidStructureType("Only worker structures are able to use the action move.")
+
+        # Later, we can use find_distance to calculate the amount of energy it takes to move
+        structure.__coordinates__ = coordinates
+
+
+    def research(self, research: ResearchItem):
+        """
+        Researches something.
+        :param structure:
+        :param research:
+        :return:
+        """
+        self.__game__.__research__.research(research)
 
     def initialize_building(self, building: Building, coordinates: Coordinates):
         """
