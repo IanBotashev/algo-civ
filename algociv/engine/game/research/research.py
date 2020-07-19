@@ -18,6 +18,9 @@ class ResearchItem:
     # The Energy cost
     __cost__ = None
 
+    # Mutual Exclusive research. This means, you cannot research this, and anything included there.
+    __mutually_exclusive_to__ = []
+
     # Traits to be edited.
     __traits__ = None
 
@@ -26,6 +29,7 @@ class SampleResearch(ResearchItem):
     __name__ = "Sample Research Item"
     __description__ = 'A Sample research item. Not meant to be in-game.'
     __required__ = []
+    __mutually_exclusive_to__ = []
 
     __traits__ = {
         '__worker_dim__': Dimensions(5, 5),
@@ -35,7 +39,8 @@ class SampleResearch(ResearchItem):
 class SampleResearch1(ResearchItem):
     __name__ = "Sample Research Item 2"
     __description__ = 'A Sample research item 2. Not meant to be in-game.'
-    __required__ = [SampleResearch]
+    __required__ = []
+    __mutually_exclusive_to__ = [SampleResearch]
 
     __traits__ = {
         '__worker_dim__': Dimensions(7, 7),

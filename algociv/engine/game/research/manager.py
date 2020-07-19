@@ -18,12 +18,20 @@ class ResearchManager:
         :param research:
         :return:
         """
-        if self.check__available(research) is True and self.check_required(research) is True:
+        if self.check__available(research) and self.check_required(research) and self.check_if_special(research):
             self.update_traits(research.__traits__)
             self.update_research(research)
 
         else:
-            raise ResearchNotAvailable("This cannot be researched, because it's not available or it does not have it's required research")
+            raise ResearchNotAvailable("This cannot be researched, because a field has not been satisfied")
+
+    def check_if_special(self, research: ResearchItem):
+        """
+        Checks if the specified research item's mutual exclusive list is valid
+        :param research:
+        :return:
+        """
+        return not any(item in self.__researched__ for item in research.__mutually_exclusive_to__)
 
     def check_required(self, research: ResearchItem):
         """
