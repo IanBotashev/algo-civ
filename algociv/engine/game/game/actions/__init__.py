@@ -6,6 +6,7 @@ from algociv.engine.game.research.research import *
 from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft, CannotMine
 from .internal import is_mineable, is_craftable, check_required_materials
 from .errors import InvalidStructureType
+from algociv.engine.game.modules.modules import Module
 
 
 class Actions:
@@ -27,6 +28,24 @@ class Actions:
             raise NotMineable(f"The material {unit.value.kwargs['material']} is not mineable.")
 
         structure.__inventory__.append(unit.value.kwargs['material'])
+
+    def build_module(self, structure, module: Module):
+        """
+        Builds a module to a structure
+        :param structure:
+        :param module:
+        :return:
+        """
+        structure.__modules__.add(module)
+
+    def destroy_module(self, structure, module):
+        """
+        Destory a module from a structure
+        :param structure:
+        :param module:
+        :return:
+        """
+        structure.__modules__.remove(module)
 
     def craft(self, structure, item: Item):
         """
