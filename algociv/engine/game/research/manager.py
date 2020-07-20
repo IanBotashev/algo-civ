@@ -1,6 +1,7 @@
 from algociv.engine.game.structures.default import TraitManager
 from algociv.engine.game.research.research import ResearchItem
 from algociv.engine.game.research.errors import *
+from algociv.engine.game.game.errors import MissingMaterials
 
 
 class ResearchManager:
@@ -32,6 +33,20 @@ class ResearchManager:
         :return:
         """
         return not any(item in self.__researched__ for item in research.__mutually_exclusive_to__)
+
+    def apply_material_costs(self, structure, material_costs):
+        """
+        Applies materials costs to the structure
+        :param structure:
+        :param material_costs:
+        :return:
+        """
+        if all(item in structure.__inventory__.inventory for item in material_costs):
+            for material in material_costs:
+                structure.__inventory__.inventory.remove(material)
+
+        else:
+            raise MissingMaterials('You are missing materials which are required to research this.')
 
     def check_required(self, research: ResearchItem):
         """
