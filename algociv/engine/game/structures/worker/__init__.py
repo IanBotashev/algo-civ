@@ -2,18 +2,20 @@ from algociv.engine.game.modules.manager import ModuleManager
 from algociv.engine.gravity.grid import Grid
 from algociv.engine.gravity.grid.assets import Coordinates, Dimensions
 from algociv.engine.game.inventory import Inventory
+from algociv.engine.game.structures.default import TraitManager
 
 
 class Worker:
     __structure_type__ = 'WORKER'
-    def __init__(self, module_cap, health, grid: Grid, dimensions: Dimensions, coordinates: Coordinates, actions, energy_cap, inventory_cap):
-        self.__modules__ = ModuleManager(module_cap, self)
-        self.__health__ = health
+
+    def __init__(self, grid: Grid, coordinates: Coordinates, actions, traits: TraitManager):
+        self.__modules__ = ModuleManager(traits.__worker_module_cap__, self)
+        self.__health__ = traits.__worker_health__
         self.__grid__ = grid
-        self.__energy_cap__ = energy_cap
-        self.__dimensions__ = dimensions
+        self.__energy_cap__ = traits.__worker_energy_cap__
+        self.__dimensions__ = traits.__worker_dim__
         self.__coordinates__ = coordinates
-        self.__inventory__ = Inventory(inventory_cap)
+        self.__inventory__ = Inventory(traits.__worker_inventory_cap__)
 
         self.actions = actions
         self.scanned_units = []

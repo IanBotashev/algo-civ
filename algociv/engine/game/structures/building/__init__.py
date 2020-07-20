@@ -1,22 +1,24 @@
 from algociv.engine.game.inventory import Inventory
 from algociv.engine.gravity.grid.assets import Coordinates
 from algociv.engine.game.modules.manager import ModuleManager
+from algociv.engine.game.structures.default import TraitManager
 
 
 class Building:
     __structure_type__ = 'BUILDING'
-    def __init__(self, energy_cap, location: Coordinates, inventory_cap, module_cap, health, dimensions, grid, actions):
+
+    def __init__(self, grid, location: Coordinates, actions, traits: TraitManager):
         # This is getting extremely cluttered. I'm sure there's a better way of doing this. If you have a better way,
         # please post an issue about this.
 
         # Off limit variables
-        self.__energy_cap__ = energy_cap
-        self.__inventory__ = Inventory(inventory_cap)
+        self.__energy_cap__ = traits.__building_energy_cap__
+        self.__inventory__ = Inventory(traits.__building_inventory_cap__)
         self.__coordinates__ = location
-        self.__modules__ = ModuleManager(module_cap, self)
+        self.__modules__ = ModuleManager(traits.__building_module_cap__, self)
         self.__grid__ = grid
-        self.__health__ = health
-        self.__dimensions__ = dimensions
+        self.__health__ = traits.__building_health__
+        self.__dimensions__ = traits.__building_dim__
 
         # Ability variables
         self.__can_smelt__ = False
