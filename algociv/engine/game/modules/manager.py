@@ -1,5 +1,6 @@
 from algociv.engine.game.modules.modules import Module
 from algociv.engine.game.modules.errors import ModuleCapReached
+from algociv.engine.game.game.errors import MissingMaterials
 
 
 class ModuleManager:
@@ -12,8 +13,24 @@ class ModuleManager:
         if len(self.__modules__) + 1 > self.__cap__:
             raise ModuleCapReached('The Module Capacity has been reached.')
 
+        self.apply_material_cost(module.__material_cost__, self.__structure__)
         self.edit_traits(module.__traits__)
         self.__modules__.append(module)
+
+    def apply_material_cost(self, material_costs, structure):
+        """
+        Applies materials costs upon structures
+        :param material_costs:
+        :param structure:
+        :return:
+        """
+        if all(item in structure.__inventory__.inventory for item in material_costs):
+            for material in material_costs:
+                structure.__inventory__.inventory.remove(material)
+
+        else:
+            raise MissingMaterials('You are missing materials which are required to build the module.')
+
 
     def edit_traits(self, traits):
         """

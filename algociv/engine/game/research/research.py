@@ -21,6 +21,9 @@ class ResearchItem:
     # Mutual Exclusive research. This means, you cannot research this, and anything included there.
     __mutually_exclusive_to__ = []
 
+    # The Material Cost
+    __material_cost__ = None
+
     # Traits to be edited.
     __traits__ = None
 

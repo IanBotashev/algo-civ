@@ -1,3 +1,6 @@
+from algociv.engine.game.items.materials import Dirt
+
+
 class Module:
     # The name of the module
     __name__ = None
@@ -6,7 +9,7 @@ class Module:
     __description__ = None
 
     # The building cost. Basically, defines what materials this will cost
-    __building_cost__ = None
+    __material_cost__ = None
 
     # The Energy Cost.
     __cost__ = None
@@ -18,6 +21,7 @@ class Module:
 class SampleModule:
     __name__ = "Sample Module"
     __description__ = "A Sample module. Not meant to be in-game"
+    __material_cost__ = [Dirt]
 
     __traits__ = {
         "__can_mine__": True

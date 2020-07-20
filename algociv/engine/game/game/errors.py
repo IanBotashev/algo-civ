@@ -16,3 +16,7 @@ class CannotMine(Exception):
 
 class CannotCraft(Exception):
     pass
+
+
+class MissingMaterials(Exception):
+    pass
