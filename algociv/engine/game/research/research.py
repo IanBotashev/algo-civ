@@ -13,7 +13,7 @@ class ResearchItem:
     __description__ = None
 
     # This shows the game what research is required so this can be researched
-    __required__ = None
+    __required__ = []
 
     # The Energy cost
     __cost__ = None
@@ -22,10 +22,10 @@ class ResearchItem:
     __mutually_exclusive_to__ = []
 
     # The Material Cost
-    __material_cost__ = None
+    __material_cost__ = []
 
     # Traits to be edited.
-    __traits__ = None
+    __traits__ = []
 
 
 class SampleResearch(ResearchItem):

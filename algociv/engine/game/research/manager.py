@@ -2,14 +2,16 @@ from algociv.engine.game.structures.default import TraitManager
 from algociv.engine.game.research.research import ResearchItem
 from algociv.engine.game.research.errors import *
 from algociv.engine.game.game.errors import MissingMaterials
+from algociv.engine.game.research.updater import update_structures
 
 
 class ResearchManager:
     """
     This object keeps track of all researched building.
     """
-    def __init__(self, trait_manager: TraitManager):
+    def __init__(self, game, trait_manager: TraitManager):
         self.__researched__ = []
+        self.__game__ = game
         self.__available_research__ = []
         self.__traits__ = trait_manager
 
@@ -22,6 +24,9 @@ class ResearchManager:
         if self.check__available(research) and self.check_required(research) and self.check_if_special(research):
             self.update_traits(research.__traits__)
             self.update_research(research)
+            update_structures(self.__game__.__structures__.__buildings__,
+                              self.__game__.__structures__.__workers__,
+                              self.__traits__)
 
         else:
             raise ResearchNotAvailable("This cannot be researched, because a field has not been satisfied")
