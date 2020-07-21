@@ -2,7 +2,7 @@ from algociv.engine.game.structures.default import TraitManager
 from algociv.engine.game.research.research import ResearchItem
 from algociv.engine.game.research.errors import *
 from algociv.engine.game.game.errors import MissingMaterials
-from algociv.engine.game.research.updater import update_structures
+from algociv.engine.game.structures.updater import update_structures
 
 
 class ResearchManager:

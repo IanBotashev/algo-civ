@@ -28,11 +28,16 @@ def update_workers(workers, traits):
     :param workers:
     :return:
     """
-    map = [
-        ''
-    ]
     for worker in workers:
+        pass
 
+
+def update_worker(worker):
+    """
+    Updates a worker to be up-to-date with the traitsmanager
+    :param worker:
+    :return:
+    """
 
 
 def update_buildings(buildings):
