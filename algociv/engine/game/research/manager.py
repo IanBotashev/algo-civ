@@ -21,12 +21,9 @@ class ResearchManager:
         :param research:
         :return:
         """
-        if self.check__available(research) and self.check_required(research) and self.check_if_special(research):
+        if self.check_available(research) and self.check_required(research) and self.check_if_special(research):
             self.update_traits(research.__traits__)
             self.update_research(research)
-            update_structures(self.__game__.__structures__.__buildings__,
-                              self.__game__.__structures__.__workers__,
-                              self.__traits__)
 
         else:
             raise ResearchNotAvailable("This cannot be researched, because a field has not been satisfied")
@@ -73,7 +70,7 @@ class ResearchManager:
         else:
             return False
 
-    def check__available(self, research: ResearchItem):
+    def check_available(self, research: ResearchItem):
         """
         Checks if you can research an RI
         :param research:
@@ -100,5 +97,5 @@ class ResearchManager:
         :param traits:
         :return:
         """
-        for key in traits:
-            self.__traits__.__dict__[key] = traits[key]
+        for trait in traits:
+            self.__traits__.update(trait)

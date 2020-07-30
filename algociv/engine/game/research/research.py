@@ -28,23 +28,26 @@ class ResearchItem:
     __traits__ = []
 
 
+class Trait:
+    """
+    This is an object to carry what traits need to be updated once a research has been done.
+    """
+    def __init__(self, structure, trait, value, **kwargs):
+        self.structure = structure
+        self.trait = trait
+        self.value = value
+        self.kwargs = kwargs
+
+    def __repr__(self):
+        return f"<Trait(structure: {self.structure}, trait: {self.trait}, value: {self.value})>"
+
+
 class SampleResearch(ResearchItem):
     __name__ = "Sample Research Item"
     __description__ = 'A Sample research item. Not meant to be in-game.'
     __required__ = []
     __mutually_exclusive_to__ = []
 
-    __traits__ = {
-        '__worker_dim__': Dimensions(5, 5),
-        }
-
-
-class SampleResearch1(ResearchItem):
-    __name__ = "Sample Research Item 2"
-    __description__ = 'A Sample research item 2. Not meant to be in-game.'
-    __required__ = []
-    __mutually_exclusive_to__ = [SampleResearch]
-
-    __traits__ = {
-        '__worker_dim__': Dimensions(7, 7),
-        }
+    __traits__ = [
+        Trait('__workers__', "health", 1000),
+        ]

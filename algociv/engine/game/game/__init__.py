@@ -17,8 +17,7 @@ class Game:
             Value('Stone', [40, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], material=Stone),
             ]
 
-        self.__seed_num__ = random.randint(100000, 999999)
-        self.__seed__ = Seed(self.__seed_num__, self.__materials__, 1, 105,  Value('Dirt', [], material=Dirt))
+        self.__seed__ = Seed(random.randint(100000, 999999), self.__materials__, 1, 105,  Value('Dirt', [], material=Dirt))
         self.__grid__ = Grid(self.__seed__)
 
         self.__structures__ = StructureManager()
@@ -26,7 +25,7 @@ class Game:
         self.__traits__ = TraitManager()
         self.actions = Actions(self)
 
-        self.__research__ = ResearchManager(self.__traits__)
+        self.__research__ = ResearchManager(self, self.__traits__)
         self.add_allowed_research()
 
     def add_allowed_research(self):
@@ -36,7 +35,6 @@ class Game:
         """
         research = [
             SampleResearch,
-            SampleResearch1
         ]
         self.__research__.__available_research__ = research
 

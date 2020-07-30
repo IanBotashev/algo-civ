@@ -12,13 +12,14 @@ class Building:
         # please post an issue about this.
 
         # Off limit variables
-        self.__energy_cap__ = traits.__building_energy_cap__
-        self.__inventory__ = Inventory(traits.__building_inventory_cap__)
+        self.__traits__ = traits
+        self.__energy_cap__ = self.__traits__.__buildings__['energy_cap']
+        self.__inventory__ = Inventory(self.__traits__.__buildings__["inventory_cap"])
         self.__coordinates__ = location
-        self.__modules__ = ModuleManager(traits.__building_module_cap__, self)
+        self.__modules__ = ModuleManager(self.__traits__.__buildings__["module_cap"], self)
         self.__grid__ = grid
-        self.__health__ = traits.__building_health__
-        self.__dimensions__ = traits.__building_dim__
+        self.__health__ = self.__traits__.__buildings__['health']
+        self.__dimensions__ = self.__traits__.__buildings__['dimensions']
 
         # Ability variables
         self.__can_smelt__ = False
@@ -32,6 +33,17 @@ class Building:
 
     def run(self):
         print("Should probably put something here. Currently, your building is doing nothing.")
+
+    def update(self):
+        """
+        Updates traits for this instance of the object.
+        :return:
+        """
+        self.__energy_cap__ = self.__traits__.__buildings__['energy_cap']
+        self.__inventory__.slots = self.__traits__.__buildings__["inventory_cap"]
+        self.__modules__.__cap__ = self.__traits__.__buildings__["module_cap"]
+        self.__health__ = self.__traits__.__buildings__['health']
+        self.__dimensions__ = self.__traits__.__buildings__['dimensions']
 
     def scan(self):
         """

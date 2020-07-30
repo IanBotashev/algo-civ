@@ -9,13 +9,14 @@ class Worker:
     __structure_type__ = 'WORKER'
 
     def __init__(self, grid: Grid, coordinates: Coordinates, actions, traits: TraitManager):
-        self.__modules__ = ModuleManager(traits.__worker_module_cap__, self)
-        self.__health__ = traits.__worker_health__
+        self.__traits__ = traits
+        self.__modules__ = ModuleManager(self.__traits__.__workers__['module_cap'], self)
+        self.__health__ = self.__traits__.__workers__["health"]
         self.__grid__ = grid
-        self.__energy_cap__ = traits.__worker_energy_cap__
-        self.__dimensions__ = traits.__worker_dim__
+        self.__energy_cap__ = self.__traits__.__workers__["energy_cap"]
+        self.__dimensions__ = self.__traits__.__workers__["dimensions"]
         self.__coordinates__ = coordinates
-        self.__inventory__ = Inventory(traits.__worker_inventory_cap__)
+        self.__inventory__ = Inventory(self.__traits__.__workers__['inventory_cap'])
 
         self.actions = actions
         self.scanned_units = []
@@ -26,8 +27,19 @@ class Worker:
         self.__can_produce_energy = False
         self.__can_craft__ = False
 
-    def runtime(self):
+    def run(self):
         print('Should probably put something here. Currently, your worker is doing nothing!')
+
+    def update(self):
+        """
+        Updates traits for this instance of the object.
+        :return:
+        """
+        self.__modules__.__cap__ = self.__traits__.__workers__['module_cap']
+        self.__inventory__.slots = self.__traits__.__workers__['inventory_cap']
+        self.__health__ = self.__traits__.__workers__["health"]
+        self.__energy_cap__ = self.__traits__.__workers__["energy_cap"]
+        self.__dimensions__ = self.__traits__.__workers__["dimensions"]
 
     def scan(self):
         """

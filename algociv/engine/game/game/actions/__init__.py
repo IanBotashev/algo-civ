@@ -6,6 +6,7 @@ from algociv.engine.game.research.research import *
 from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft, CannotMine
 from .internal import is_mineable, is_craftable, check_required_materials
 from .errors import InvalidStructureType
+from algociv.engine.game.structures.updater import update_structures
 from algociv.engine.game.modules.modules import Module
 
 
@@ -81,7 +82,6 @@ class Actions:
         # Later, we can use find_distance to calculate the amount of energy it takes to move
         structure.__coordinates__ = coordinates
 
-
     def research(self, research: ResearchItem):
         """
         Researches something.
@@ -90,6 +90,7 @@ class Actions:
         :return:
         """
         self.__game__.__research__.research(research)
+        update_structures(self.__game__.__structures__.__workers__, self.__game__.__structures__.__buildings__)
 
     def initialize_building(self, building: Building, coordinates: Coordinates):
         """
