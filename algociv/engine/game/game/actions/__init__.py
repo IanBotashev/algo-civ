@@ -3,7 +3,8 @@ from algociv.engine.game.structures.worker import Worker
 from algociv.engine.gravity.grid.assets import Coordinates, Unit
 from algociv.engine.game.items.items import *
 from algociv.engine.game.research.research import *
-from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft, CannotMine, NotEnoughEnergy, InvalidStructureType, ReachedCap
+from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft
+from algociv.engine.game.game.errors import CannotMine, NotEnoughEnergy, InvalidStructureType, ReachedCap
 from .internal import is_mineable, is_craftable, check_required_materials
 from algociv.engine.game.structures.updater import update_structures
 from algociv.engine.game.modules.modules import Module

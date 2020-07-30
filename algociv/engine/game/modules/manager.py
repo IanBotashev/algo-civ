@@ -39,7 +39,7 @@ class ModuleManager:
         :return:
         """
         for key in traits:
-            self.__structure__.__dict__[key] = traits[key]
+            self.__structure__.__dict__[key] += traits[key]
 
     def revert_traits(self, traits):
         """
