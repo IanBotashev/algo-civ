@@ -42,7 +42,6 @@ class Building:
         self.__energy_cap__ = self.__traits__.__buildings__['energy_cap']
         self.__inventory__.slots = self.__traits__.__buildings__["inventory_cap"]
         self.__modules__.__cap__ = self.__traits__.__buildings__["module_cap"]
-        self.__health__ = self.__traits__.__buildings__['health']
         self.__dimensions__ = self.__traits__.__buildings__['dimensions']
 
     def scan(self):
