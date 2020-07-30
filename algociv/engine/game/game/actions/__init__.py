@@ -3,9 +3,8 @@ from algociv.engine.game.structures.worker import Worker
 from algociv.engine.gravity.grid.assets import Coordinates, Unit
 from algociv.engine.game.items.items import *
 from algociv.engine.game.research.research import *
-from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft, CannotMine
+from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft, CannotMine, NotEnoughEnergy, InvalidStructureType, ReachedCap
 from .internal import is_mineable, is_craftable, check_required_materials
-from .errors import InvalidStructureType
 from algociv.engine.game.structures.updater import update_structures
 from algociv.engine.game.modules.modules import Module
 
@@ -82,6 +81,22 @@ class Actions:
 
         # Later, we can use find_distance to calculate the amount of energy it takes to move
         structure.__coordinates__ = coordinates
+
+    def repair(self, structure, amount):
+        """
+        Adds an amount of health to the structure. At the cost of energy
+        :param structure:
+        :param amount:
+        :return:
+        """
+        if amount+structure.health > structure.__health_cap__:
+            raise ReachedCap('Cannot repair, because health cap has been reached.')
+
+        if amount > structure.energy:
+            raise NotEnoughEnergy(f"You do not have enough energy to heal by {amount}")
+
+        structure.energy -= amount
+        structure.health += amount
 
     def research(self, structure, research: ResearchItem):
         """

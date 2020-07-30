@@ -13,7 +13,7 @@ import random
 
 
 class Game:
-    def __init__(self, algorithm: Algorithm):
+    def __init__(self, algorithm):
         self.__materials__ = [
             Value('Stone', [40, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], material=Stone),
             ]
@@ -67,7 +67,6 @@ class Game:
             worker.run()
 
     def run(self):
-        while True:
-            self.algo.run()
-            self.run_structures()
-            self.run_workers()
+        self.algo.run()
+        self.run_structures()
+        self.run_workers()

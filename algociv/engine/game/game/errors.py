@@ -20,3 +20,15 @@ class CannotCraft(Exception):
 
 class MissingMaterials(Exception):
     pass
+
+
+class NotEnoughEnergy(Exception):
+    pass
+
+
+class InvalidStructureType(Exception):
+    pass
+
+
+class ReachedCap(Exception):
+    pass
