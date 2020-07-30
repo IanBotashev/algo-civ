@@ -73,7 +73,7 @@ class Actions:
     def move(self, structure, coordinates: Coordinates):
         """
         Moves a worker to new coordinates
-        :param worker:
+        :param structure:
         :param coordinates:
         :return:
         """
@@ -98,7 +98,7 @@ class Actions:
     def initialize_building(self, building: Building, coordinates: Coordinates):
         """
         Initializes a building.
-        :param structure:
+        :param building:
         :param coordinates:
         :return:
         """
