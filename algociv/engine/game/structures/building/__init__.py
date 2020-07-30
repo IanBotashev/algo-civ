@@ -46,6 +46,9 @@ class Building:
         self.__dimensions__ = self.__traits__.__buildings__['dimensions']
         self.__health__ = self.__traits__.__buildings__['health_cap']
 
+        for module in self.__modules__.__modules__:
+            self.__modules__.edit_traits(module.__traits__)
+
     def scan(self):
         """
         Basically uses generate() on __grid__

@@ -32,7 +32,7 @@ class Worker:
         self.__can_produce_energy = False
         self.__can_craft__ = False
 
-    def runtime(self):
+    def run(self):
         print('Should probably put something here. Currently, your worker is doing nothing!')
 
     def update(self):
@@ -45,6 +45,9 @@ class Worker:
         self.__dimensions__ = self.__traits__.__workers__["dimensions"]
         self.__health_cap__ = self.__traits__.__workers__['health_cap']
         self.__inventory__.slots = self.__traits__.__workers__['inventory_cap']
+
+        for module in self.__modules__.__modules__:
+            self.__modules__.edit_traits(module.__traits__)
 
 
     def scan(self):
