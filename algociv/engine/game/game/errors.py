@@ -18,6 +18,10 @@ class CannotCraft(Exception):
     pass
 
 
+class CannotProduceEnergy(Exception):
+    pass
+
+
 class MissingMaterials(Exception):
     pass
 

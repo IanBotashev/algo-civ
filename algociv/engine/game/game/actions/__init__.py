@@ -4,7 +4,7 @@ from algociv.engine.gravity.grid.assets import Coordinates, Unit
 from algociv.engine.game.items.items import *
 from algociv.engine.game.research.research import *
 from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft
-from algociv.engine.game.game.errors import CannotMine, NotEnoughEnergy, InvalidStructureType, ReachedCap
+from algociv.engine.game.game.errors import CannotMine, NotEnoughEnergy, InvalidStructureType, ReachedCap, CannotProduceEnergy
 from .internal import is_mineable, is_craftable, check_required_materials
 from algociv.engine.game.structures.updater import update_structures
 from algociv.engine.game.modules.modules import Module
@@ -29,6 +29,19 @@ class Actions:
             raise NotMineable(f"The material {unit.value.kwargs['material']} is not mineable.")
 
         structure.__inventory__.append(unit.value.kwargs['material'])
+
+    def produce_energy(self, structure, materials: list):
+        """
+        Generates energy by going through the materials given.
+        :param structure:
+        :param materials:
+        :return:
+        """
+        if not structure.__can_produce_energy__:
+            raise CannotProduceEnergy('This structure cannot produce energy.')
+
+        for material in materials:
+            structure.energy += material.__energy__
 
     def build_module(self, structure, module: Module):
         """
