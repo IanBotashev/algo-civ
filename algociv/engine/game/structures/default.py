@@ -19,7 +19,7 @@ class TraitManager:
         # Worker Default Stats
         self.__workers__ = {
             "dimensions": Dimensions(3, 3),
-            "health": 50,
+            "health_cap": 50,
             "module_cap": 2,
             "energy_cap": 50,
             "inventory_cap": 5,
@@ -28,7 +28,7 @@ class TraitManager:
         # Building Default Stats
         self.__buildings__ = {
             "dimensions": Dimensions(3, 3),
-            "health": 75,
+            "health_cap": 75,
             "module_cap": 2,
             "energy_cap": 100,
             "inventory_cap": 10,
@@ -37,7 +37,7 @@ class TraitManager:
         # Civilization Default Stats
         self.__civ__ = {
             "dimensions": Dimensions(5, 5),
-            "health": 100,
+            "health_cap": 100,
             "module_cap": 4,
             "energy_cap": 200,
             "inventory_cap": 20,

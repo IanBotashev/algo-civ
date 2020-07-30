@@ -49,5 +49,5 @@ class SampleResearch(ResearchItem):
     __mutually_exclusive_to__ = []
 
     __traits__ = [
-        Trait('__workers__', "health", 1000),
+        Trait('__workers__', "health_cap", 1000),
         ]

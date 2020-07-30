@@ -13,13 +13,16 @@ class Building:
 
         # Off limit variables
         self.__traits__ = traits
+
         self.__energy_cap__ = self.__traits__.__buildings__['energy_cap']
         self.__inventory__ = Inventory(self.__traits__.__buildings__["inventory_cap"])
-        self.__coordinates__ = location
         self.__modules__ = ModuleManager(self.__traits__.__buildings__["module_cap"], self)
-        self.__grid__ = grid
-        self.__health__ = self.__traits__.__buildings__['health']
+        self.__health_cap__ = self.__traits__.__buildings__['health_cap']
+        self.__health__ = self.__traits__.__buildings__['health_cap']
         self.__dimensions__ = self.__traits__.__buildings__['dimensions']
+
+        self.__coordinates__ = location
+        self.__grid__ = grid
 
         # Ability variables
         self.__can_smelt__ = False
@@ -40,9 +43,11 @@ class Building:
         :return:
         """
         self.__energy_cap__ = self.__traits__.__buildings__['energy_cap']
+        self.__health_cap__ = self.__traits__.__buildings__['health_cap']
         self.__inventory__.slots = self.__traits__.__buildings__["inventory_cap"]
         self.__modules__.__cap__ = self.__traits__.__buildings__["module_cap"]
         self.__dimensions__ = self.__traits__.__buildings__['dimensions']
+        self.__health__ = self.__traits__.__buildings__['health_cap']
 
     def scan(self):
         """

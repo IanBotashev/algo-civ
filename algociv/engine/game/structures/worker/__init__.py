@@ -9,17 +9,20 @@ class Worker:
     __structure_type__ = 'WORKER'
 
     def __init__(self, grid: Grid, coordinates: Coordinates, actions, traits: TraitManager):
+        # Trait Variables
         self.__traits__ = traits
+
         self.__modules__ = ModuleManager(self.__traits__.__workers__['module_cap'], self)
-        self.__health__ = self.__traits__.__workers__["health"]
-        self.__grid__ = grid
+        self.__health__ = self.__traits__.__workers__["health_cap"]
         self.__energy_cap__ = self.__traits__.__workers__["energy_cap"]
+        self.__health_cap__ = self.__traits__.__workers__['health_cap']
         self.__dimensions__ = self.__traits__.__workers__["dimensions"]
-        self.__coordinates__ = coordinates
         self.__inventory__ = Inventory(self.__traits__.__workers__['inventory_cap'])
 
         self.actions = actions
         self.scanned_units = []
+        self.__grid__ = grid
+        self.__coordinates__ = coordinates
 
         # Ability variables
         self.__can_smelt__ = False
@@ -38,6 +41,7 @@ class Worker:
         self.__modules__.__cap__ = self.__traits__.__workers__['module_cap']
         self.__energy_cap__ = self.__traits__.__workers__["energy_cap"]
         self.__dimensions__ = self.__traits__.__workers__["dimensions"]
+        self.__health_cap__ = self.__traits__.__workers__['health_cap']
         self.__inventory__.slots = self.__traits__.__workers__['inventory_cap']
 
 
