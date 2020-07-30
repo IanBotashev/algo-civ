@@ -22,6 +22,7 @@ class SampleModule:
     __name__ = "Sample Module"
     __description__ = "A Sample module. Not meant to be in-game"
     __material_cost__ = [Dirt]
+    __cost__ = 10
 
     __traits__ = {
         "__can_mine__": True

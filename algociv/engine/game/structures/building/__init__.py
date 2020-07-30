@@ -8,31 +8,28 @@ class Building:
     __structure_type__ = 'BUILDING'
 
     def __init__(self, grid, location: Coordinates, actions, traits: TraitManager):
-        # This is getting extremely cluttered. I'm sure there's a better way of doing this. If you have a better way,
-        # please post an issue about this.
-
         # Off limit variables
         self.__traits__ = traits
 
-        self.__energy_cap__ = self.__traits__.__buildings__['energy_cap']
-        self.__inventory__ = Inventory(self.__traits__.__buildings__["inventory_cap"])
-        self.__modules__ = ModuleManager(self.__traits__.__buildings__["module_cap"], self)
+        self.__modules__ = ModuleManager(self.__traits__.__buildings__['module_cap'], self)
+        self.__energy_cap__ = self.__traits__.__buildings__["energy_cap"]
         self.__health_cap__ = self.__traits__.__buildings__['health_cap']
-        self.__health__ = self.__traits__.__buildings__['health_cap']
-        self.__dimensions__ = self.__traits__.__buildings__['dimensions']
-
-        self.__coordinates__ = location
+        self.__dimensions__ = self.__traits__.__buildings__["dimensions"]
+        self.__inventory__ = Inventory(self.__traits__.__buildings__['inventory_cap'])
         self.__grid__ = grid
+        self.__coordinates__ = location
+
+        # User Accessible Variables
+        self.health = self.__traits__.__buildings__['health_cap']
+        self.energy = self.__traits__.__buildings__['energy_cap']
+        self.actions = actions
+        self.scanned_units = []
 
         # Ability variables
         self.__can_smelt__ = False
         self.__can_mine__ = False
         self.__can_produce_energy = False
         self.__can_craft__ = False
-
-        # User accessible variables
-        self.actions = actions
-        self.scanned_units = []
 
     def run(self):
         print("Should probably put something here. Currently, your building is doing nothing.")

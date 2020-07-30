@@ -1,6 +1,6 @@
 from algociv.engine.game.modules.manager import ModuleManager
 from algociv.engine.gravity.grid import Grid
-from algociv.engine.gravity.grid.assets import Coordinates, Dimensions
+from algociv.engine.gravity.grid.assets import Coordinates
 from algociv.engine.game.inventory import Inventory
 from algociv.engine.game.structures.default import TraitManager
 
@@ -9,20 +9,22 @@ class Worker:
     __structure_type__ = 'WORKER'
 
     def __init__(self, grid: Grid, coordinates: Coordinates, actions, traits: TraitManager):
-        # Trait Variables
+        # Off Limit Variables
         self.__traits__ = traits
 
         self.__modules__ = ModuleManager(self.__traits__.__workers__['module_cap'], self)
-        self.__health__ = self.__traits__.__workers__["health_cap"]
         self.__energy_cap__ = self.__traits__.__workers__["energy_cap"]
         self.__health_cap__ = self.__traits__.__workers__['health_cap']
         self.__dimensions__ = self.__traits__.__workers__["dimensions"]
         self.__inventory__ = Inventory(self.__traits__.__workers__['inventory_cap'])
-
-        self.actions = actions
-        self.scanned_units = []
         self.__grid__ = grid
         self.__coordinates__ = coordinates
+
+        # User Accessible Variables
+        self.health = self.__traits__.__workers__["health_cap"]
+        self.energy = self.__traits__.__workers__['energy_cap']
+        self.actions = actions
+        self.scanned_units = []
 
         # Ability variables
         self.__can_smelt__ = False

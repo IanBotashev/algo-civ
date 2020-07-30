@@ -37,6 +37,7 @@ class Actions:
         :param module:
         :return:
         """
+        structure.energy -= module.__cost__
         structure.__modules__.add(module)
 
     def destroy_module(self, structure, module):
@@ -82,13 +83,15 @@ class Actions:
         # Later, we can use find_distance to calculate the amount of energy it takes to move
         structure.__coordinates__ = coordinates
 
-    def research(self, research: ResearchItem):
+    def research(self, structure, research: ResearchItem):
         """
         Researches something.
         :param structure:
         :param research:
         :return:
         """
+        structure.energy -= research.__cost__
+        self.__game__.__research__.apply_material_costs(structure, research.__material_cost__)
         self.__game__.__research__.research(research)
         update_structures(self.__game__.__structures__.__workers__, self.__game__.__structures__.__buildings__)
 

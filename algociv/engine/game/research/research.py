@@ -46,6 +46,7 @@ class SampleResearch(ResearchItem):
     __name__ = "Sample Research Item"
     __description__ = 'A Sample research item. Not meant to be in-game.'
     __required__ = []
+    __cost__ = 10
     __mutually_exclusive_to__ = []
 
     __traits__ = [
