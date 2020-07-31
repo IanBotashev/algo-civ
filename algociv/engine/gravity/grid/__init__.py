@@ -2,6 +2,7 @@ from algociv.engine.gravity.grid.generation.seed import *
 from algociv.engine.gravity.grid.assets import Coordinates, Dimensions
 from algociv.engine.gravity.grid.generation import *
 import logging
+from algociv.engine.gravity.grid.generation import pick_value
 
 
 def start_logging(logging_level):
@@ -42,3 +43,13 @@ class Grid:
         :return:
         """
         self.saved_units.update({(unit.coordinates.xpos, unit.coordinates.ypos): unit.value})
+
+    def delete_saved_unit(self, coordinates):
+        """
+        Deletes a unit from the saved_units dictionary.
+        Also can be used to reset units.
+        :param coordinates:
+        :return:
+        """
+        del self.saved_units[(coordinates.xpos, coordinates.ypos)]
+
