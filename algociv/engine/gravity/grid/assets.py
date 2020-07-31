@@ -1,4 +1,4 @@
-from gravity.grid.value import *
+from algociv.engine.gravity.grid.value import *
 from math import sqrt
 
 

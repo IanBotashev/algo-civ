@@ -1,7 +1,7 @@
-from gravity.grid.assets import *
+from algociv.engine.gravity.grid.assets import *
 import logging
 from noise import snoise2
-from gravity.grid import Grid
+from algociv.engine.gravity.grid import Grid
 
 
 # This is the system responsible for generating the grids.

@@ -1,6 +1,6 @@
-from engine.gravity.grid.generation import *
-from engine.gravity.grid.generation.seed import *
-from engine.gravity.grid.assets import Coordinates, Dimensions
+from algociv.engine.gravity.grid.generation import *
+from algociv.engine.gravity.grid.generation.seed import *
+from algociv.engine.gravity.grid.assets import Coordinates, Dimensions
 import logging
 
 
