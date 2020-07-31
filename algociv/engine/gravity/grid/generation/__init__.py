@@ -1,7 +1,6 @@
 from algociv.engine.gravity.grid.assets import *
 import logging
 from noise import snoise2
-from algociv.engine.gravity.grid import Grid
 
 
 # This is the system responsible for generating the grids.
@@ -65,22 +64,20 @@ def generate_value(seed, unit):
 def pick_value(unit, grid):
     """
     Picks a value
-    :param seed:
     :param unit:
-    :param saved_units:
+    :param grid:
     :return:
     """
     logging.debug('Picking value...')
 
-    for _unit in grid.saved_units:
-        if unit.xpos == _unit.coordinates.xpos and unit.ypos == _unit.coordinates.ypos:
-            logging.debug('Unit exists in saved Units...')
-            result = _unit.value
-            break
+    if (unit.xpos, unit.ypos) in grid.saved_units:
+        logging.debug('Grabbing unit from saved units...')
+        result = grid.saved_units[(unit.xpos, unit.ypos)]
 
     else:
         logging.debug('Generating new unit...')
         result = generate_value(grid.seed, unit)
+        grid.update_saved_units(Unit(result, unit))
 
     logging.debug(f'Value: {result}')
     logging.info('Generated Value successfully.\n')
@@ -104,12 +101,11 @@ def generate_picklist(values):
     return result
 
 
-def generate_units(visible_units, grid: Grid, dimensions):
+def generate_units(visible_units, grid, dimensions):
     """
     Creates units from a list of coordinates.
-    :param seed:
     :param visible_units:
-    :param saved_units:
+    :param grid:
     :param dimensions:
     :return:
     """

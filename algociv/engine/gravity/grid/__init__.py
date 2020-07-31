@@ -1,6 +1,6 @@
-from algociv.engine.gravity.grid.generation import *
 from algociv.engine.gravity.grid.generation.seed import *
 from algociv.engine.gravity.grid.assets import Coordinates, Dimensions
+from algociv.engine.gravity.grid.generation import *
 import logging
 
 
@@ -23,7 +23,9 @@ class Grid:
         self.logging_level = logging_level
         start_logging(self.logging_level)
 
-        self.saved_units = []
+        self.saved_units = {
+
+        }
 
     def generate(self, point: Coordinates, dimensions: Dimensions):
         """
@@ -32,3 +34,11 @@ class Grid:
         """
         visible_units = generate_visible_units(point, dimensions)
         return generate_units(visible_units, self, dimensions)
+
+    def update_saved_units(self, unit: Unit):
+        """
+        Updates/adds a saved unit into the saved_units.
+        :param unit:
+        :return:
+        """
+        self.saved_units.update({(unit.coordinates.xpos, unit.coordinates.ypos): unit.value})

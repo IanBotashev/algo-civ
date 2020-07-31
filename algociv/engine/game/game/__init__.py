@@ -8,7 +8,7 @@ from algociv.engine.game.structures.default import TraitManager
 from algociv.engine.game.research.research import SampleResearch
 from algociv.engine.game.items.materials import *
 from algociv.engine.gravity.grid import Grid
-from algociv.algo import Algorithm
+import logging
 import random
 
 
@@ -21,7 +21,7 @@ class Game:
         self.__seed__ = Seed(random.randint(100000, 999999),
                              self.__materials__,
                              Value('Dirt', (0, 0), material=Dirt))
-        self.__grid__ = Grid(self.__seed__)
+        self.__grid__ = Grid(self.__seed__, logging.DEBUG)
 
         self.__traits__ = TraitManager()
         self.actions = Actions(self)
