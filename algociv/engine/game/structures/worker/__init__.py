@@ -24,7 +24,6 @@ class Worker:
         self.health = self.__traits__.__workers__["health_cap"]
         self.energy = self.__traits__.__workers__['energy_cap']
         self.actions = actions
-        self.scanned_units = []
 
         # Ability variables
         self.__can_smelt__ = False
@@ -49,13 +48,6 @@ class Worker:
         for module in self.__modules__.__modules__:
             self.__modules__.edit_traits(module.__traits__)
 
-
-    def scan(self):
-        """
-        Basically uses generate() on __grid__
-        :return:
-        """
-        self.scanned_units = self.__grid__.generate(self.__coordinates__, self.__dimensions__)
 
     def __repr__(self):
         return_string = \

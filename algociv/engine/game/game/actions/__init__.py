@@ -43,6 +43,13 @@ class Actions:
         for material in materials:
             structure.energy += material.__energy__
 
+    def scan(self, structure):
+        """
+        Basically uses generate() on __grid__
+        :return:
+        """
+        return structure.__grid__.generate(structure.__coordinates__, structure.__dimensions__)
+
     def build_module(self, structure, module: Module):
         """
         Builds a module to a structure
