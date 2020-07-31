@@ -1,5 +1,6 @@
-from algociv.engine.gravity.grid.generation import *
-from algociv.engine.gravity.grid.generation.seed import *
+from engine.gravity.grid.generation import *
+from engine.gravity.grid.generation.seed import *
+from engine.gravity.grid.assets import Coordinates, Dimensions
 import logging
 
 
@@ -30,4 +31,4 @@ class Grid:
         :return:
         """
         visible_units = generate_visible_units(point, dimensions)
-        return generate_units(self.seed, visible_units, self.saved_units, dimensions)
+        return generate_units(visible_units, self, dimensions)

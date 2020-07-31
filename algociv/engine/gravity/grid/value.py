@@ -2,7 +2,7 @@ class Value:
     """
     This is an individual cell, but it's the content
     """
-    def __init__(self, name, chance: list, **kwargs):
+    def __init__(self, name, chance: tuple, **kwargs):
         self.name = name
         self.chance = chance
         self.kwargs = kwargs

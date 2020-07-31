@@ -1,28 +1,10 @@
-from algociv.engine.gravity.grid.assets import *
-from algociv.engine.gravity.grid.value import *
-import random
+from gravity.grid.assets import *
 import logging
-from math import sqrt
+from noise import snoise2
+from gravity.grid import Grid
 
 
-"""
-This is the system responsible for generating the grids.
-"""
-
-
-def generation_algorithm(seed, unit):
-    """
-    The generation algorithm.
-    :param seed:
-    :return:
-    """
-    seedrandom = random.Random(x=seed.seed + ((unit.xpos + unit.ypos)*100))
-
-    tempnum = seedrandom.randint(seed.start, seed.end)
-
-    defnum = seedrandom.randint(tempnum - seed.start, seed.end)
-
-    return defnum
+# This is the system responsible for generating the grids.
 
 
 def generate_visible_units(center_point, dimensions):
@@ -30,8 +12,7 @@ def generate_visible_units(center_point, dimensions):
     Generates a list of all visible units.
     It does not return a list of Unit building, but coordinate building.
     :param center_point:
-    :param width:
-    :param height:
+    :param dimensions:
     :return:
     """
     result = []
@@ -47,32 +28,51 @@ def generate_visible_units(center_point, dimensions):
     return result
 
 
-def generate_value(seed, unit):
+def generation_algorithm(seed, unit):
     """
-    generates the value needed.
+    Uses simplex noise to generate a value.
     :param seed:
+    :param unit:
     :return:
     """
-    defnum = generation_algorithm(seed, unit)
+    point = snoise2(unit.xpos/seed.scale, unit.ypos/seed.scale,
+                    octaves=seed.octaves,
+                    persistence=seed.persistence,
+                    lacunarity=seed.lacunarity,
+                    repeatx=1024,
+                    repeaty=1024,
+                    base=seed.seed)
+    logging.debug(f"New Simplex Value: {point}")
+    return point
+
+
+def generate_value(seed, unit):
+    """
+    Gets a simplex noise value between -1 and 1, and then returns a value.
+    :param seed:
+    :param unit:
+    :return:
+    """
+    int_value = generation_algorithm(seed, unit)
 
     for value in seed.values:
-        for chancenum in value.chance:
-            if defnum == chancenum:
-                return value
+        if value.chance[0] <= int_value <= value.chance[1]:
+            return value
 
     return seed.default
 
 
-def pick_value(seed, unit, saved_units):
+def pick_value(unit, grid):
     """
-    Picks a value for a unit.
-    :param pick_list:
+    Picks a value
+    :param seed:
+    :param unit:
+    :param saved_units:
     :return:
     """
-    result = ''
     logging.debug('Picking value...')
 
-    for _unit in saved_units:
+    for _unit in grid.saved_units:
         if unit.xpos == _unit.coordinates.xpos and unit.ypos == _unit.coordinates.ypos:
             logging.debug('Unit exists in saved Units...')
             result = _unit.value
@@ -80,7 +80,7 @@ def pick_value(seed, unit, saved_units):
 
     else:
         logging.debug('Generating new unit...')
-        result = generate_value(seed, unit)
+        result = generate_value(grid.seed, unit)
 
     logging.debug(f'Value: {result}')
     logging.info('Generated Value successfully.\n')
@@ -104,18 +104,20 @@ def generate_picklist(values):
     return result
 
 
-def generate_units(seed, visible_units, saved_units, dimensions):
+def generate_units(visible_units, grid: Grid, dimensions):
     """
     Creates units from a list of coordinates.
-    :param values:
+    :param seed:
     :param visible_units:
+    :param saved_units:
+    :param dimensions:
     :return:
     """
     result = []
     logging.info('Generating units...')
     logging.info('Picking Values...')
     for unit in visible_units:
-        result.append(Unit(pick_value(seed, unit, saved_units), unit))
+        result.append(Unit(pick_value(unit, grid), unit))
 
     logging.info('Finished Picking Values...')
 

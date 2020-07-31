@@ -15,14 +15,12 @@ import random
 class Game:
     def __init__(self, algorithm):
         self.__materials__ = [
-            Value('Stone', [40, 41, 42, 43, 44, 45, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], material=Stone),
+            Value('Stone', (-0.2, 0.0), material=Stone),
             ]
 
         self.__seed__ = Seed(random.randint(100000, 999999),
                              self.__materials__,
-                             1,
-                             105,
-                             Value('Dirt', [], material=Dirt))
+                             Value('Dirt', (0, 0), material=Dirt))
         self.__grid__ = Grid(self.__seed__)
 
         self.__traits__ = TraitManager()
