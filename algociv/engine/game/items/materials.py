@@ -16,3 +16,10 @@ class Dirt(Material):
     __name__ = 'Dirt'
     __description__ = 'Dirt. This is dirt. I think this is dirt?'
     __energy__ = 1
+
+class Structure(Material):
+    __name__ = 'Structure'
+    __description__ = 'Structure-type.'
+    __energy__ = None
+
+    __structure__ = ""

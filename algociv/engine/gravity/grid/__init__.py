@@ -42,3 +42,11 @@ class Grid:
         :return:
         """
         self.saved_units.update({(unit.coordinates.xpos, unit.coordinates.ypos): unit.value})
+
+    def delete_saved_unit(self, coordinates):
+        """
+        Deletes a unit from saved units
+        :param coordinates:
+        :return:
+        """
+        del self.saved_units[(coordinates.xpos, coordinates.ypos)]

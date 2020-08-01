@@ -1,3 +1,7 @@
+from algociv.engine.gravity.grid.assets import *
+from algociv.engine.gravity.grid.value import *
+
+
 def is_mineable(material, mineables):
     """
     Checks if a material is mineable
@@ -25,3 +29,12 @@ def is_craftable(item, craftables):
     :return:
     """
     return item in craftables
+
+
+def build_structure_on_grid(structure, coordinates, grid):
+    """
+    Builds a structure on the grid like a unit
+    :param unit:
+    :return:
+    """
+    grid.update_saved_units(Unit(Value('Structure', (0, 0), structure=structure), coordinates))
