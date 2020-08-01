@@ -6,4 +6,4 @@
 # - There has been 2 minor releases associated with the major release 1.
 # - There are 4 bug fixes/optimizations associated with the minor release 2.
 
-__version__ = "v1.0.0-alpha"
+__version__ = "v1.1.0-alpha"
