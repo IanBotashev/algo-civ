@@ -50,7 +50,7 @@ class Structure:
         self.__inventory__.slots = self.__traits__.__buildings__["inventory_cap"]
         self.__modules__.__cap__ = self.__traits__.__buildings__["module_cap"]
         self.__dimensions__ = self.__traits__.__buildings__['dimensions']
-        self.__health__ = self.__traits__.__buildings__['health_cap']
+        self.__health_cap__ = self.__traits__.__buildings__['health_cap']
 
         for module in self.__modules__.__modules__:
             self.__modules__.edit_traits(module.__traits__)
