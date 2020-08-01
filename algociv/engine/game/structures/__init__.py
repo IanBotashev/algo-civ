@@ -1,3 +1,4 @@
+
 from algociv.engine.game.inventory import Inventory
 from algociv.engine.gravity.grid.assets import Coordinates
 from algociv.engine.game.modules.manager import ModuleManager
