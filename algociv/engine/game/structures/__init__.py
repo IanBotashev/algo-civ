@@ -3,7 +3,6 @@ from algociv.engine.gravity.grid.assets import Coordinates
 from algociv.engine.game.modules.manager import ModuleManager
 from algociv.engine.game.structures.default import TraitManager
 
-
 # Structure types
 ST_NULL = 'NULL'
 ST_CIV = 'CIV'
