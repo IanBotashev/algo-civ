@@ -84,6 +84,23 @@ def pick_value(unit, grid):
     return result
 
 
+def generate_picklist(values):
+    """
+    Generates a picklist
+    :param values:
+    :return:
+    """
+    result = []
+    logging.info('Generating picklist...')
+    for value in values:
+        for x in range(value.chance):
+            result.append(value)
+
+    logging.debug(f'Picklist: {result}')
+    logging.info('Generated Picklist\n')
+    return result
+
+
 def generate_units(visible_units, grid, dimensions):
     """
     Creates units from a list of coordinates.

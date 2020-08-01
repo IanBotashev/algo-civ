@@ -5,7 +5,7 @@ from algociv.engine.game.items.items import *
 from algociv.engine.game.research.research import *
 from algociv.engine.game.game.errors import DoesNotHaveRequiredItems, NotCraftable, NotMineable, CannotCraft
 from algociv.engine.game.game.errors import CannotMine, NotEnoughEnergy, InvalidStructureType, ReachedCap, CannotProduceEnergy
-from .internal import is_mineable, is_craftable, check_required_materials, build_structure_on_grid
+from .internal import is_mineable, is_craftable, check_required_materials
 from algociv.engine.game.structures.updater import update_structures
 from algociv.engine.game.modules.modules import Module
 
@@ -101,12 +101,7 @@ class Actions:
             raise InvalidStructureType("Only worker structures are able to use the action move.")
 
         # Later, we can use find_distance to calculate the amount of energy it takes to move
-
-        # Reset the unit the structure was standing on.
-        structure.__grid__.delete_saved_unit(structure.__coordinates__)
-
         structure.__coordinates__ = coordinates
-        build_structure_on_grid(structure, coordinates, self.__game__.__grid__)
 
     def repair(self, structure, amount):
         """
@@ -148,7 +143,6 @@ class Actions:
         # I had to do building() and not building.__init__(), because __init__ does not return the proper object instance.
         # Or maybe it does, and i'm just an awful programmer. Who knows.
         result = building(self.__game__.__grid__, coordinates, self, self.__game__.__traits__)
-        build_structure_on_grid(result, coordinates, self.__game__.__grid__)
 
         self.__game__.__structures__.__buildings__.append(result)
         return result
@@ -163,7 +157,6 @@ class Actions:
         # Apologies for this amount of errors, you may ignore this.
         # I had to do worker() and not worker.__init__(), because __init__ does not return the proper object instance.
         result = worker(self.__game__.__grid__, coordinates, self, self.__game__.__traits__)
-        build_structure_on_grid(result, coordinates, self.__game__.__grid__)
 
         self.__game__.__structures__.__workers__.append(result)
         return result
